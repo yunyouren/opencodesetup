@@ -10,10 +10,12 @@
       "credentials*": "deny",
       "secrets*": "deny",
       "id_rsa*": "deny",
+      ".opencode/.gitignore": "deny",
       ".opencode/node_modules/**": "deny",
       ".opencode/package.json": "deny",
       ".opencode/package-lock.json": "deny",
       ".opencode/bun.lock": "deny",
+      "claude-plugins-official/**": "deny",
       "claude-plugins-official/.git/**": "deny"
     },
     "bash": {

@@ -27,4 +27,4 @@ This repository ports Anthropic's Claude Code Setup plugin ideas into OpenCode p
 ## Validation
 
 - After changing recommender behavior, run or simulate `/setup-eval` against the fixtures.
-- At minimum, check for regressions with `fixtures/empty-opencode`, `fixtures/frontend-react`, `fixtures/python-api`, and `fixtures/claude-plugin-source`.
+- At minimum, check for regressions with `fixtures/empty-opencode`, `fixtures/frontend-react`, `fixtures/python-api`, `fixtures/claude-plugin-source`, and `fixtures/existing-opencode-config`.
