@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md"],
+  "permission": {
+    "edit": {
+      "*": "ask",
+      ".env*": "deny",
+      "*.key": "deny",
+      "*.pem": "deny",
+      "credentials*": "deny",
+      "secrets*": "deny",
+      "id_rsa*": "deny",
+      ".opencode/node_modules/**": "deny",
+      ".opencode/package.json": "deny",
+      ".opencode/package-lock.json": "deny",
+      ".opencode/bun.lock": "deny",
+      "claude-plugins-official/.git/**": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "rm -rf *": "deny",
+      "git reset --hard*": "deny",
+      "git clean -fd*": "deny"
+    }
+  }
+}
