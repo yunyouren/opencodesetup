@@ -76,6 +76,8 @@ Use the reference tables:
 - [opencode-hooks-reference.md](references/opencode-hooks-reference.md) — **docs only; no `.ts` creation**
 - [opencode-extensions-reference.md](references/opencode-extensions-reference.md)
 
+Baseline branch: if the repo has no application/framework signals and no project OpenCode config, recommend only a minimal `opencode.jsonc` starter (with `"$schema": "https://opencode.ai/config.json"` and `instructions: ["AGENTS.md"]`) plus a project `AGENTS.md`; skip MCP, skills, commands, subagents, and plugins unless there is a real signal.
+
 ### Phase 3 — Output report
 
 Use this format. **Only 1-2 per category** unless the user asked for a specific one.
@@ -123,7 +125,7 @@ Create: `.opencode/agents/[name].md` (mode: subagent)
 #### [rule]
 Why: [reason]
 Add to `opencode.jsonc` -> `permission`:
-{ "edit": { "*.env": "deny", "*": "ask" } }
+{ "edit": { "*": "ask", ".env*": "deny" } }
 
 ---
 

@@ -26,6 +26,7 @@ Use checklist: `docs/evals/setup-recommender-checklist.md`
    - Over-recommendations
    - Missing recommendations
    - Safety/schema issues
+   - Source-line evidence for every failure (quote the file path and line number you relied on)
    - Suggested minimal fixes, without applying them
 
 ## Pass criteria

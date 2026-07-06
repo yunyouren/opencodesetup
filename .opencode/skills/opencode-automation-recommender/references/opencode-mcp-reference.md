@@ -58,7 +58,7 @@ Value: live docs instead of stale training data; fewer hallucinated APIs.
 ### Playwright MCP
 **Best for:** frontend projects needing browser automation, testing, screenshots.
 Recommend when: React/Vue/Angular app, E2E tests, visual regression, debugging UI.
-Snippet: `{ "type": "local", "command": ["npx", "-y", "@playwright/mcp"], "enabled": false }`
+Snippet: `{ "type": "local", "command": ["npx", "-y", "@playwright/mcp"], "environment": {}, "enabled": false }`
 
 ### Puppeteer MCP
 **Best for:** headless browser automation, web scraping, PDF generation from HTML.
