@@ -53,7 +53,7 @@ Map captured signals to OpenCode recommendations using the reference tables:
 
 ### Phase 3 — Output report
 
-Produce the formatted report described in the skill (see its Output Format). Surface **only the top 1-2 per category** (3-5 if the user asked for a specific category). Skip irrelevant categories. For every recommendation include: the signal that triggered it, the exact file/config location, and a ready-to-paste config snippet validated against the OpenCode schema. End by noting the user can ask for more or ask you to walk through implementing any item.
+Produce the four-tier report described in the skill: `Baseline`, `High confidence`, `Optional`, and `Skipped`. Surface **only the top 1-2 grounded items per tier** (3-5 if the user asked for a specific category). Skip irrelevant categories, and put existing items in `Skipped` with `already configured`. For every recommendation include: the signal that triggered it, the exact file/config location, and a ready-to-paste config snippet validated against the OpenCode schema. End by noting the user can ask for more or ask you to walk through implementing any item.
 
 ## Output contract
 

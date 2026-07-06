@@ -11,7 +11,7 @@ Analyze codebase patterns to recommend tailored OpenCode automations across all 
 
 ## Output guidelines
 
-- **Recommend 1-2 of each type** — surface the top 1-2 most valuable per category; don't overwhelm.
+- **Recommend 1-2 per confidence tier** — surface only grounded items; don't force every category to appear.
 - **If the user names a category**, focus there and give 3-5 options.
 - **Go beyond the reference tables** — use `websearch`/`webfetch` (with approval when required) to find tool/framework-specific recommendations not in the tables.
 - **Tell users they can ask for more** — end by noting they can request more in any category.
@@ -80,7 +80,7 @@ Baseline branch: if the repo has no application/framework signals and no project
 
 ### Phase 3 — Output report
 
-Use this format. **Only 1-2 per category** unless the user asked for a specific one.
+Use this format. **Only 1-2 per confidence tier** unless the user asked for a specific category. Put already-present items in `Skipped` with `already configured`.
 
 ```
 ## OpenCode Automation Recommendations
@@ -92,44 +92,75 @@ Use this format. **Only 1-2 per category** unless the user asked for a specific 
 
 ---
 
-### MCP servers
+### Baseline
+
+#### [opencode.jsonc / AGENTS.md / permissions]
+Status: recommend / skipped
+Why: [missing baseline config OR already configured]
+Snippet/location: [ready-to-paste snippet or existing path]
+
+---
+
+### High confidence
+
+#### [skill / command / subagent / MCP / permission]
+Why: [strong signal from files/deps/config]
+Create/add: [target path or config location]
+
+---
+
+### Optional
+
+#### [MCP / formatter / helper]
+Why: [useful but not required]
+Add to: [target path or config location]
+
+---
+
+### Skipped
+
+#### [item/category]
+Reason: [already configured / no signal / too risky / plugin not warranted]
+
+Examples:
+- `opencode.jsonc` — already configured
+- `AGENTS.md` — already configured
+- `/setup` — already configured
+- `setup-architect` — already configured
+- Plugins/hooks — no real plugin signal; `.ts` plugins require explicit approval
+
+---
+
+### Snippet examples
+
+#### MCP server
 #### [name]
 Why: [signal-based reason]
 Add to `opencode.jsonc` -> `mcp`:
 { "type": "local", "command": [...], "environment": { ... }, "enabled": false }
 
----
-
-### Skills
+#### Skill
 #### [name]
 Why: [reason]
 Create: `.opencode/skills/[name]/SKILL.md`
 
----
-
-### Commands
+#### Command
 #### [name]
 Why: [reason]
 Create: `.opencode/commands/[name].md`
 
----
-
-### Subagents
+#### Subagent
 #### [name]
 Why: [reason]
 Create: `.opencode/agents/[name].md` (mode: subagent)
 
----
-
-### Permissions
+#### Permission
 #### [rule]
 Why: [reason]
 Add to `opencode.jsonc` -> `permission`:
 { "edit": { "*": "ask", ".env*": "deny" } }
 
----
-
-### Plugins (hooks) — higher risk
+#### Plugin (hook) — higher risk
 #### [hook]
 Why: [reason]
 Risk: plugins run as TypeScript with tool/config mutation powers. Create `.opencode/plugins/[name].ts` only after explicit approval.
@@ -139,6 +170,7 @@ End with: "Want more? Ask for additional recommendations in any category. Want h
 
 ## Decision framework
 
+- **Recommend baseline when:** `opencode.jsonc`, `AGENTS.md`, or protective `permission` is missing. If present, put it in `Skipped` as `already configured`.
 - **Recommend MCP when:** external service/docs/browser/team-tool integration needed.
 - **Recommend skills when:** repeated prompts/workflows, project-specific tasks, packaged expertise.
 - **Recommend commands when:** explicit user-invoked entry points (`/deploy`, `/setup`, `/pr-check`).

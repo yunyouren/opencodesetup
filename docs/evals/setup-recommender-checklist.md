@@ -49,3 +49,13 @@ Expected:
 - Map `.mcp.json` to `opencode.jsonc` `mcp` snippets, preserving `enabled: false` default.
 - Do not create `.ts` plugins; if hooks are ever detected, explain plugin risk first.
 - Do not recommend app-stack-specific MCPs unless the plugin source actually references those stacks.
+
+## fixtures/existing-opencode-config
+
+Expected:
+
+- Detect existing `opencode.jsonc`, `AGENTS.md`, `.opencode/commands/setup.md`, `.opencode/agents/setup-architect.md`, and `.opencode/skills/project-conventions/SKILL.md`.
+- Do not recommend creating baseline `opencode.jsonc`, `AGENTS.md`, `/setup`, `setup-architect`, or `project-conventions` again.
+- Organize output into `Baseline`, `High confidence`, `Optional`, and `Skipped` sections.
+- Put already-present items in `Skipped` with a reason such as `already configured`.
+- Preserve MCP `enabled: false`, local MCP `environment`, and `$schema` rules in any snippets.

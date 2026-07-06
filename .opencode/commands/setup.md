@@ -37,7 +37,7 @@ Map signals to OpenCode recommendations via the skill's reference tables (`refer
 
 ## Phase 3 — Report
 
-Use the report format in the skill. For each recommendation include: the triggering signal, the target file/config location, and a validated, ready-to-paste snippet. End with an offer to give more in any category or to walk through implementing an item (still read-only).
+Use the skill's four-tier report format: `Baseline`, `High confidence`, `Optional`, and `Skipped`. For each recommendation include: the triggering signal, the target file/config location, and a validated, ready-to-paste snippet. Put existing items in `Skipped` with `already configured`. End with an offer to give more in any category or to walk through implementing an item (still read-only).
 
 ## Optional: locked-down analysis
 
