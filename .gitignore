@@ -1,0 +1,8 @@
+# separate cloned repo (tracked upstream)
+claude-plugins-official/
+
+# opencode auto-generated scaffolding
+.opencode/node_modules/
+.opencode/package-lock.json
+.opencode/bun.lock
+.opencode/.gitignore
