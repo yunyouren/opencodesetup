@@ -38,6 +38,8 @@ Use `glob` to detect manifests and structure, `read` to inspect them, `grep` to 
 
 Do NOT read: `.env*`, `*.key`, `*.pem`, `credentials*`, `secrets*`, `id_rsa*`.
 
+Ignore opencode auto-generated scaffolding as signals: `.opencode/package.json`, `.opencode/package-lock.json`, `.opencode/node_modules/`, and `.opencode/.gitignore` bootstrap the `@opencode-ai/plugin` SDK in any `.opencode/` project. Do NOT treat that package as a user dependency or plugin-authoring signal. Only count user-authored `.opencode/plugins/*.ts` or `opencode.jsonc` `plugin` entries as real plugin signals.
+
 ### Phase 2 — Generate recommendations
 
 Map captured signals to OpenCode recommendations using the reference tables:
@@ -56,8 +58,9 @@ Produce the formatted report described in the skill (see its Output Format). Sur
 ## Output contract
 
 - All config snippets must validate against `https://opencode.ai/config.json`. In particular:
-  - Local MCP: `type: "local"`, `command: [...]` (string array), env vars in `environment` (NOT `env`), optional `enabled`/`cwd`/`timeout`.
-  - Remote MCP: `type: "remote"`, `url`, optional `headers` (supports `{env:VAR}`), optional `oauth`.
+  - `opencode.jsonc` starter snippets include `"$schema": "https://opencode.ai/config.json"` as the first key.
+  - Local MCP: `type: "local"`, `command: [...]` (string array), env vars in `environment` (NOT `env`), default `enabled: false`, optional `cwd`/`timeout`.
+  - Remote MCP: `type: "remote"`, `url`, optional `headers` (supports `{env:VAR}`), optional `oauth`, default `enabled: false`.
   - `permission`: a string action (`allow`/`ask`/`deny`) OR an object `{ "pattern": action }`; broad rules first, narrow last (last match wins).
   - `model` values carry a provider prefix (e.g. `anthropic/claude-sonnet-4-6`).
 - **Print snippets only.** Do not write them anywhere. Tell the user exactly which file each snippet belongs in and let them paste it.

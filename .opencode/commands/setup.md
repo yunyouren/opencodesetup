@@ -17,8 +17,9 @@ Arguments (optional): `$ARGUMENTS`
 - **Never read or print** `.env`, secrets, tokens, API keys, private keys. Skip `.env*`, `*.key`, `*.pem`, `credentials*`, `secrets*`, `id_rsa*`.
 - **Never run install scripts** (`npm install`, etc.) and **never auto-enable high-risk MCP**.
 - All config snippets must validate against `https://opencode.ai/config.json`:
-  - Local MCP: `type: "local"`, `command: [...]` (string array), env vars in `environment` (NOT `env`).
-  - Remote MCP: `type: "remote"`, `url`, optional `headers` / `oauth`.
+  - `opencode.jsonc` starter snippets must include `"$schema": "https://opencode.ai/config.json"` as the first key.
+  - Local MCP: `type: "local"`, `command: [...]` (string array), env vars in `environment` (NOT `env`), default `enabled: false`.
+  - Remote MCP: `type: "remote"`, `url`, optional `headers` / `oauth`, default `enabled: false`.
   - `permission`: string action OR `{ "pattern": action }`; broad first, narrow last (last match wins).
   - `model` values carry a provider prefix (e.g. `anthropic/claude-sonnet-4-6`).
 - **Print snippets only** — tell the user which file each belongs in; let them paste it. Do not write config yourself.
@@ -27,6 +28,8 @@ Arguments (optional): `$ARGUMENTS`
 ## Phase 1 — Analyze
 
 Use `glob`/`read`/`grep` (prefer these over `bash`). Detect manifests, framework, deps, tests, CI, and existing OpenCode config (`opencode.jsonc`, `AGENTS.md`, `.opencode/`). Capture the nine signal categories listed in the skill (language/framework, frontend, backend, database, external APIs, testing, CI/CD, issue tracking, docs). Skip secret files.
+
+Ignore opencode auto-generated scaffolding as signals: `.opencode/package.json`, `.opencode/package-lock.json`, `.opencode/node_modules/`, and `.opencode/.gitignore` bootstrap the plugin SDK and do NOT prove a plugin-authoring workflow. Only count user-authored `.opencode/plugins/*.ts` or `opencode.jsonc` `plugin` entries as real plugin signals.
 
 ## Phase 2 — Recommend
 
