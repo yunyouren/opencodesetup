@@ -1,0 +1,8 @@
+{
+  "name": "demo-claude-plugin",
+  "description": "Fixture Claude Code plugin used to test OpenCode porting recommendations.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Fixture"
+  }
+}
